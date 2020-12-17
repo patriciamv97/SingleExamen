@@ -2,12 +2,12 @@ package com.cod;
 
 public class Main {
     public static void main(String[] args) {
-        if (metodo1("pepe@danielcastelao.org")) {
+        if (conectarConNombreUsuario("pepe@danielcastelao.org")) {
             System.out.println("Listo");
         } else {
             System.out.println("Fallo");
         }
-        if (metodo2()) {
+        if (conetarConCorreo()) {
             System.out.println("Listo");
         } else {
             System.out.println("Fallo");
@@ -15,15 +15,26 @@ public class Main {
 
     }
 
-    public static boolean metodo1(String u) {
-        Auxiliar obx1 = new Auxiliar(u);
-        System.out.println("Conectando a " + obx1.h + ", con el usuario " + u);
-        return obx1.con();
+    /**
+     * Método de tipo boolean que devuelve el estado de la conxion y nos dice con que usuario nos conectamos
+     * @param usuario
+     * @return devuelve la comparacion de las direcciones de correo
+     */
+
+    public static boolean conectarConNombreUsuario(String usuario) {
+        Usuario miUnicaInstancia = Usuario.getInstance();
+        System.out.println("Conectando a " + miUnicaInstancia.getDireccionIp() + ", con el usuario " + usuario);
+        return Usuario.getInstance().conexion();
     }
 
-    public static boolean metodo2() {
-        Auxiliar obx2 = new Auxiliar();
-        System.out.println("Conectando a " + obx2.h + ", con el usuario " + obx2.e);
-        return obx2.con();
+    /**
+     * Método de tipo boolean que devuelve el estado de la conxion y nos dice con que email nos conectamos
+     * @return devuelve la comparacion de las direcciones de correo
+     */
+
+    public static boolean conetarConCorreo() {
+        Usuario miUnicaInstancia = Usuario.getInstance();
+        System.out.println("Conectando a " + miUnicaInstancia.getDireccionIp() + ", con el usuario " + Usuario.getInstance().getEmail());
+        return Usuario.getInstance().conexion();
     }
 }
